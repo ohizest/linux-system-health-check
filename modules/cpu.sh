@@ -18,11 +18,11 @@ CPU_LOAD_INT=${CPU_LOAD%.*}
 
 # Evaluate status
 if [ "$CPU_LOAD_INT" -ge "$CRITICAL_THRESHOLD" ]; then
-    STATUS="${RED}❌ High CPU Usage:${CPU_LOAD_INT}% (Critical)${RESET}"
+    STATUS="${RED} High CPU Usage:${CPU_LOAD_INT}% (Critical)${RESET}"
 elif [ "$CPU_LOAD_INT" -ge "$WARNING_THRESHOLD" ]; then
-    STATUS="${YELLOW}⚠️  CPU Usage:${CPU_LOAD_INT}% (Warning)${RESET}"
+    STATUS="${YELLOW}  CPU Usage:${CPU_LOAD_INT}% (Warning)${RESET}"
 else
-    STATUS="${GREEN}✅ CPU Usage:${CPU_LOAD_INT}% (OK)${RESET}"
+    STATUS="${GREEN} CPU Usage:${CPU_LOAD_INT}% (OK)${RESET}"
 fi
 
 echo -e "$STATUS"
