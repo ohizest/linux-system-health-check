@@ -19,11 +19,11 @@ MEM_USED_PERCENT=$(( MEM_USED * 100 / MEM_TOTAL ))
 
 # Evaluate status
 if [ "$MEM_USED_PERCENT" -ge "$CRITICAL_THRESHOLD" ]; then
-    STATUS="${RED}❌ High Memory Usage: ${MEM_USED_PERCENT}% of ${MEM_TOTAL}MB (Critical)${RESET}"
+    STATUS="${RED} High Memory Usage: ${MEM_USED_PERCENT}% of ${MEM_TOTAL}MB (Critical)${RESET}"
 elif [ "$MEM_USED_PERCENT" -ge "$WARNING_THRESHOLD" ]; then
-    STATUS="${YELLOW}⚠️  Memory Usage: ${MEM_USED_PERCENT}% of ${MEM_TOTAL}MB (Warning)${RESET}"
+    STATUS="${YELLOW} Memory Usage: ${MEM_USED_PERCENT}% of ${MEM_TOTAL}MB (Warning)${RESET}"
 else
-    STATUS="${GREEN}✅ Memory Usage: ${MEM_USED_PERCENT}% of ${MEM_TOTAL}MB (OK)${RESET}"
+    STATUS="${GREEN} Memory Usage: ${MEM_USED_PERCENT}% of ${MEM_TOTAL}MB (OK)${RESET}"
 fi
 
 echo -e "$STATUS"
