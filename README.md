@@ -10,7 +10,7 @@ This is a customizable, modular Bash-based tool that performs detailed health ch
 - Output options: terminal, log file, JSON, and HTML
 - Optional email or webhook alerts on critical issues
 - Container-friendly – runs in Docker environments
-- ⏱Cron-ready for scheduled system health audits
+- Cron-ready for scheduled system health audits
 - Compare system health to a saved healthy baseline
 
 ## Usage
