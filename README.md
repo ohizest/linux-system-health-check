@@ -81,7 +81,8 @@ Memory Usage
 
 ![shot 4](https://github.com/user-attachments/assets/200309bb-369d-4878-a215-ca42385f5f34)
 
-##  Run and save results to log file
+## Exporting Results of Health Check
+###  Run and save results to log file
 
 ```
 ./healthcheck.sh --cpu --memory --output log
@@ -96,4 +97,16 @@ CPU Load: 12%
 Memory Usage: 61%
 Top Process: firefox (8.3%)
 
+```
+###  Run and save results to JSON
+
+```
+./healthcheck.sh --cpu --memory --output json
+```
+Sample JSON Output CPU and Memory
+```
+{"timestamp":"2025-07-05T10:25:31+01:00",
+"results":[
+{"module":"cpu","status":"ok","load_avg":0.01,"cpu_percent":1},
+{"module":"memory","status":"ok","used_percent":11,"top_process":"unattended-upgr","top_process_mem":0.5}]}
 ```
