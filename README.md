@@ -7,11 +7,10 @@ This is a customizable, modular Bash-based tool that performs detailed health ch
 - Modular design – enable only the checks you need
 - Monitors CPU, memory, disk, services, and network
 - Color-coded terminal output for quick scanning
-- Output options: terminal, log file, JSON, and HTML
-- Optional email or webhook alerts on critical issues
-- Container-friendly – runs in Docker environments
-- Cron-ready for scheduled system health audits
-- Compare system health to a saved healthy baseline
+- Output options: terminal, log file, JSON, and HTML (in progress)
+- Optional email or webhook alerts on critical issues (in progress)
+- Cron-ready for scheduled system health audits (in progress)
+- Compare system health to a saved healthy baseline (in progress)
 
 ## Modular Architecture
 Each system check is handled by its own script in the /modules folder, making it easy to add or remove specific checks.
