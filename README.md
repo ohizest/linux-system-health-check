@@ -1,4 +1,4 @@
-## LinSysGuard: Modular Linux System Health Checker
+## SysGuard: Modular Linux System Health Checker
 
 This is a customizable, modular Bash-based tool that performs detailed health checks on Linux systems. Designed for system administrators, DevOps engineers, and cloud professionals, it offers clean, readable output, optional reports, and baseline comparison features to identify issues before they become critical.
 
