@@ -1,0 +1,35 @@
+==============================
+SysGuard Report - Sat Jul  5 07:59:00 WAT 2025
+==============================
+ CPU Usage:1% (OK)(B
+ Memory Usage: 8% of 3857MB (OK)(B
+
+ Top 3 Memory-Consuming Processes:
+PID  COMMAND        %MEM
+224   unattended-upgr 0.5
+186   networkd-dispat 0.4
+63    systemd-journal 0.4
+
+==============================
+SysGuard Report - Sat Jul  5 08:00:45 WAT 2025
+==============================
+ CPU Usage:1% (OK)(B
+ Memory Usage: 7% of 3857MB (OK)(B
+
+ Top 3 Memory-Consuming Processes:
+PID  COMMAND        %MEM
+224   unattended-upgr 0.5
+186   networkd-dispat 0.4
+63    systemd-journal 0.4
+
+==============================
+SysGuard Report - Sat Jul  5 08:03:23 WAT 2025
+==============================
+ High CPU Usage:100% (Critical)(B
+ Internet connectivity: Available(B
+ Latency: 48.020 ms(B
+ 0% packet loss(B
+
+ Active Network Interfaces:
+eth0: 172.31.111.8/20
+
