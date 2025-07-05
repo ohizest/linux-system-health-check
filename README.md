@@ -64,16 +64,21 @@ Then use it anywhere:
 sysguard --cpu --disk
 ```
 ## Screenshots of Linux System Health Check by Synguard
-Check Services Before 
+Check Services Before
+
 ![shot nginx before](https://github.com/user-attachments/assets/652c04bf-5f7d-4c2d-870d-e822d85df96f)
 
+
 Check Services After Recent Ngninx Installation
+
 ![shot nginx after](https://github.com/user-attachments/assets/096f837d-2460-4cb4-8e81-eb34ae4e6855)
 
 Cpu and disck check
+
 ![shot 3](https://github.com/user-attachments/assets/b69e57ad-28bc-4ad0-abb1-063a06f1c230)
 
 Memory Usage
+
 ![shot 4](https://github.com/user-attachments/assets/200309bb-369d-4878-a215-ca42385f5f34)
 
 
