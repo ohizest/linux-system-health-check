@@ -40,3 +40,20 @@ Check specific modules:
 ./healthcheck.sh --disk --services
 
 ```
+## Configure Services to Monitor
+```
+# One service name per line
+nginx
+docker
+mysql
+ssh
+```
+
+## Installation 
+```
+git clone https://github.com/ohizest/linux-system-health-check.git
+cd sysguard
+chmod +x healthcheck.sh modules/*.sh
+
+
+```
