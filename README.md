@@ -7,7 +7,7 @@ This is a customizable, modular Bash-based tool that performs detailed health ch
 - Modular design – enable only the checks you need
 - Monitors CPU, memory, disk, services, and network
 - Color-coded terminal output for quick scanning
-- Output options: terminal, log file, JSON, and HTML (in progress)
+- Output options: terminal, log file, JSON
 - Optional email or webhook alerts on critical issues (in progress)
 - Cron-ready for scheduled system health audits (in progress)
 - Compare system health to a saved healthy baseline (in progress)
