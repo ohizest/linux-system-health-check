@@ -81,5 +81,19 @@ Memory Usage
 
 ![shot 4](https://github.com/user-attachments/assets/200309bb-369d-4878-a215-ca42385f5f34)
 
+##  Run and save results to log file
 
+```
+./healthcheck.sh --cpu --memory --output log
+```
+This creates or appends to sysguard.log with a formatted output like the below.  This is quite useful for historical audits
 
+```
+==============================
+SysGuard Report - 2025-07-05 10:20:15
+==============================
+CPU Load: 12%
+Memory Usage: 61%
+Top Process: firefox (8.3%)
+
+```
