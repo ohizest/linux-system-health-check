@@ -64,6 +64,13 @@ case "$OUTPUT_MODE" in
         } >> "$LOG_FILE"
         echo " Log saved to $LOG_FILE"
         ;;
+    json)
+        TIMESTAMP=$(date -Iseconds)
+        JSON="{\"timestamp\":\"$TIMESTAMP\",\"results\":["
+        JSON+=$(IFS=,; echo "${RESULTS[*]}")
+        JSON+="]}"
+        echo "$JSON"
+        ;;
     *)
         echo "Unsupported output mode: $OUTPUT_MODE"
         ;;

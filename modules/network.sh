@@ -1,50 +1,31 @@
 #!/usr/bin/bash
 
-# Network Check Module
+# Network Module
 
-# Colors
+PING_TARGET="8.8.8.8"
+INTERFACES=$(ip -o link show | awk -F': ' '{print $2}' | tr '\n' ',' | sed 's/,$//')
+PING_RESULT=$(ping -c 1 -W 1 $PING_TARGET 2>/dev/null)
+PING_STATUS=$?
+LATENCY=$(echo "$PING_RESULT" | grep 'time=' | awk -F'time=' '{print $2}' | cut -d' ' -f1)
+
+# === Output for JSON mode ===
+if [[ "$OUTPUT_MODE" == "json" ]]; then
+    if [[ "$PING_STATUS" -eq 0 ]]; then
+        STATUS="ok"
+    else
+        STATUS="fail"
+    fi
+    echo "{\"module\":\"network\",\"status\":\"$STATUS\",\"interfaces\":\"$INTERFACES\",\"ping_target\":\"$PING_TARGET\",\"latency_ms\":\"$LATENCY\"}"
+    exit 0
+fi
+
+# === Output for Terminal mode ===
 GREEN=$(tput setaf 2)
-YELLOW=$(tput setaf 3)
 RED=$(tput setaf 1)
 RESET=$(tput sgr0)
 
-# Target for ping test
-TARGET="8.8.8.8"
-
-# Check internet connectivity
-ping -c 2 -W 2 $TARGET > /dev/null 2>&1
-if [ $? -eq 0 ]; then
-    CONNECTION_STATUS="${GREEN} Internet connectivity: Available${RESET}"
+if [[ "$PING_STATUS" -eq 0 ]]; then
+    echo -e "${GREEN} Network OK: ping $PING_TARGET = ${LATENCY} ms | Interfaces: ${INTERFACES}${RESET}"
 else
-    CONNECTION_STATUS="${RED} Internet connectivity: Unavailable${RESET}"
+    echo -e "${RED} Network FAIL: Cannot reach $PING_TARGET | Interfaces: ${INTERFACES}${RESET}"
 fi
-
-# Run ping test and extract latency + loss
-PING_RESULT=$(ping -c 4 -q $TARGET 2>/dev/null)
-
-if [[ $? -eq 0 ]]; then
-    # Extract average latency
-    AVG_LATENCY=$(echo "$PING_RESULT" | awk -F '/' '/rtt/ {print $5}')
-    PACKET_LOSS=$(echo "$PING_RESULT" | awk -F ', ' '/packets transmitted/ {print $3}')
-
-    if [[ $(echo "$AVG_LATENCY > 150" | bc -l) -eq 1 ]]; then
-        LATENCY_STATUS="${YELLOW}  High latency: ${AVG_LATENCY} ms${RESET}"
-    else
-        LATENCY_STATUS="${GREEN} Latency: ${AVG_LATENCY} ms${RESET}"
-    fi
-
-    LOSS_STATUS="${GREEN} ${PACKET_LOSS}${RESET}"
-else
-    LATENCY_STATUS="${RED} Ping test failed${RESET}"
-    LOSS_STATUS="${RED} Packet loss unknown${RESET}"
-fi
-
-# Show IP addresses of active interfaces
-IP_SUMMARY=$(ip -brief addr | awk '$2 == "UP" {print $1 ": " $3}')
-
-# Output summary
-echo -e "$CONNECTION_STATUS"
-echo -e "$LATENCY_STATUS"
-echo -e "$LOSS_STATUS"
-echo -e "\n Active Network Interfaces:"
-echo -e "$IP_SUMMARY"

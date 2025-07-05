@@ -1,30 +1,41 @@
 #!/usr/bin/bash
 
-# Service Status Check Module
+# Services Module
 
-# Colors
+CONFIG_FILE="./config/services.conf"
+STATUS_JSON=()
+
+if [[ ! -f "$CONFIG_FILE" ]]; then
+    echo "  Missing config file: $CONFIG_FILE"
+    exit 1
+fi
+
+# === Terminal Mode Setup ===
 GREEN=$(tput setaf 2)
-YELLOW=$(tput setaf 3)
 RED=$(tput setaf 1)
 RESET=$(tput sgr0)
 
-# List of services to check
-SERVICES=("nginx" "mysql" "docker" "ssh")
+# === Main Loop ===
+while read -r SERVICE || [[ -n "$SERVICE" ]]; do
+    [[ -z "$SERVICE" || "$SERVICE" =~ ^# ]] && continue
 
-echo -e " Checking critical services:\n"
-
-# Check each service
-for SERVICE in "${SERVICES[@]}"; do
-    if systemctl list-units --type=service | grep -q "${SERVICE}.service"; then
-        STATUS=$(systemctl is-active "$SERVICE")
-        if [[ "$STATUS" == "active" ]]; then
-            echo -e "${GREEN} $SERVICE is running${RESET}"
-        elif [[ "$STATUS" == "inactive" ]]; then
-            echo -e "${YELLOW} $SERVICE is installed but inactive${RESET}"
+    if systemctl is-active --quiet "$SERVICE"; then
+        if [[ "$OUTPUT_MODE" == "json" ]]; then
+            STATUS_JSON+=("{\"service\":\"$SERVICE\",\"status\":\"running\"}")
         else
-            echo -e "${RED} $SERVICE status: $STATUS${RESET}"
+            echo -e "${GREEN} $SERVICE is running${RESET}"
         fi
     else
-        echo -e "${RED} $SERVICE not installed or not found${RESET}"
+        if [[ "$OUTPUT_MODE" == "json" ]]; then
+            STATUS_JSON+=("{\"service\":\"$SERVICE\",\"status\":\"inactive\"}")
+        else
+            echo -e "${RED} $SERVICE is NOT running${RESET}"
+        fi
     fi
-done
+done < "$CONFIG_FILE"
+
+# === Output JSON if required ===
+if [[ "$OUTPUT_MODE" == "json" ]]; then
+    JOINED=$(IFS=,; echo "${STATUS_JSON[*]}")
+    echo "{\"module\":\"services\",\"status\":\"ok\",\"services\":[$JOINED]}"
+fi
