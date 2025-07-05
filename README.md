@@ -13,25 +13,30 @@ This is a customizable, modular Bash-based tool that performs detailed health ch
 - Cron-ready for scheduled system health audits
 - Compare system health to a saved healthy baseline
 
-## Usage
-
-```bash
-./healthcheck.sh --cpu --disk --memory --output json
-```
-You can also run it in cron mode:
-```
-./healthcheck.sh --cron >> /var/log/sysguard.log
-```
 ## Modular Architecture
 Each system check is handled by its own script in the /modules folder, making it easy to add or remove specific checks.
 
 ```
-modules/
-├── cpu.sh
-├── disk.sh
-├── memory.sh
-├── services.sh
-└── network.sh
+├── healthcheck.sh
+├── modules/
+│ ├── cpu.sh
+│ ├── memory.sh
+│ ├── disk.sh
+│ ├── network.sh
+│ └── services.sh
+├── config/
+│ └── services.conf
+└── README.md
 
 ```
+## Run Health Checks
 
+```bash
+./healthcheck.sh --cpu --memory --disk --network --services
+
+```
+Check specific modules:
+```
+./healthcheck.sh --disk --services
+
+```
