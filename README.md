@@ -69,7 +69,7 @@ Check Services Before
 ![shot nginx before](https://github.com/user-attachments/assets/652c04bf-5f7d-4c2d-870d-e822d85df96f)
 
 
-Check Services After Recent Ngninx Installation
+Check Services After Ngninx Installation
 
 ![shot nginx after](https://github.com/user-attachments/assets/096f837d-2460-4cb4-8e81-eb34ae4e6855)
 
