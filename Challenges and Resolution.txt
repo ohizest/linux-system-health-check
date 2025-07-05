@@ -1,0 +1,64 @@
+Git/GitHub Challenges Faced & Solutions
+1. SSH Authentication Issues
+Problem:
+
+git push was hanging or failing to authenticate, even after adding the SSH key.
+
+Terminal was stuck in a flashing loop when trying to push.
+
+Debugging Steps:
+
+Verified SSH connection with ssh -T git@github.com (initially hung).
+
+Discovered network/firewall restrictions blocking port 22 (default SSH).
+
+Solution:
+
+Configured SSH to use port 443 (HTTPS) instead:
+
+bash
+cat >> ~/.ssh/config <<EOF
+Host github.com
+  Hostname ssh.github.com
+  Port 443
+  User git
+EOF
+Tested again with ssh -T git@github.com → Success! ✅
+
+Branch Mismatch (main vs master)
+Problem:
+
+Error:
+
+text
+error: src refspec main does not match any
+Local default branch was master, but remote expected main.
+
+Solution:
+
+Renamed local branch to match remote:
+
+bash
+git branch -m master main
+git push -u origin main
+
+Final Resolution ✅
+After:
+✔ Fixing SSH connectivity (port 443)
+✔ Correcting remote URL (HTTPS → SSH)
+✔ Resolving submodule confusion
+✔ Aligning branch names (master → main)
+
+Result:
+
+Successful push:
+
+text
+Enumerating objects: 7, done.
+Writing objects: 100% (6/6), 1.66 KiB | 32.00 KiB/s, done.
+To github.com:ohizest/linux-system-health-check.git
+   a72aadd..073772b  main -> main
+Now able to push/fetch without authentication prompts.
+
+Add log or JSON output to the memory module
+
