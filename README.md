@@ -52,7 +52,7 @@ ssh
 ## Installation 
 ```
 git clone https://github.com/ohizest/linux-system-health-check.git
-cd sysguard
+cd linux-system-health-check
 chmod +x healthcheck.sh modules/*.sh
 
 
