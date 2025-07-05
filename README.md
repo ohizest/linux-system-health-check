@@ -63,7 +63,7 @@ Then use it anywhere:
 ```
 sysguard --cpu --disk
 ```
-## Screenshots of Linux System Health Check by Synguard
+## Screenshots of Sysguard's check on a Google Cloud VM Instance
 Check Services Before
 
 ![shot nginx before](https://github.com/user-attachments/assets/652c04bf-5f7d-4c2d-870d-e822d85df96f)
