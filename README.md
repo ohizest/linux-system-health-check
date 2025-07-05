@@ -55,3 +55,12 @@ git clone https://github.com/ohizest/linux-system-health-check.git sysguard
 cd sysguard
 chmod +x healthcheck.sh modules/*.sh
 ```
+Add alias to ```.bashrc:```
+```
+alias sysguard="$PWD/healthcheck.sh"
+```
+Then use it anywhere:
+
+```
+sysguard --cpu --disk
+```
